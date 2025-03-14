@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Contact Form Submissions</h1>
+    <button class="logout-button" onclick="logout()">Logout</button>
+
+    <!-- Search Bar -->
+    <div id="search-bar">
+        <input type="text" id="search-query" placeholder="Search...">
+        <select id="search-field">
+            <option value="name">Name</option>
+            <option value="email">Email</option>
+            <option value="message">Message</option>
+        </select>
+        <button id="search-button">Search</button>
+    </div>
+
+    <!-- Submissions Display -->
+    <div id="submissions"></div>
+
+    <!-- Pagination Controls -->
+    <div id="pagination">
+        <button id="prev-page">Previous</button>
+        <span id="page-info"></span>
+        <button id="next-page">Next</button>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
