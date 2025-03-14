@@ -51,7 +51,23 @@ def test_db():
         return "✅ MongoDB Connection Successful!"
     except Exception as e:
         return f"❌ MongoDB Connection Failed: {e}"
+    
 
+
+
+@app.route("/api/contact", methods=["POST"])
+def contact():
+    try:
+        data = request.json  # Get JSON data from the frontend
+        if not data:
+            return jsonify({"error": "No data provided"}), 400
+
+        # Insert data into MongoDB
+        collection.insert_one(data)
+
+        return jsonify({"message": "Contact form submitted successfully!"}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 
