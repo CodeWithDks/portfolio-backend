@@ -1,36 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel</title>
+  <style>
+    :root {
+      --bg-color: #f9f9fb;
+      --text-color: #1c1c1e;
+      --primary: #3b82f6;
+      --secondary: #f3f4f6;
+      --border-radius: 0.5rem;
+      --shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      padding: 2rem;
+    }
+
+    h1 {
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 2rem;
+      color: var(--primary);
+    }
+
+    .logout-button {
+      float: right;
+      padding: 0.5rem 1rem;
+      background-color: crimson;
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-bottom: 1rem;
+    }
+
+    .logout-button:hover {
+      background-color: darkred;
+    }
+
+    #search-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      justify-content: center;
+    }
+
+    #search-bar input,
+    #search-bar select,
+    #search-bar button {
+      padding: 0.6rem;
+      font-size: 1rem;
+      border-radius: var(--border-radius);
+      border: 1px solid #ccc;
+    }
+
+    #search-bar button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    #search-bar button:hover {
+      background-color: #2563eb;
+    }
+
+    #submissions {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 1rem;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .submission {
+      border-bottom: 1px solid #eee;
+      padding: 1rem 0;
+    }
+
+    .submission:last-child {
+      border-bottom: none;
+    }
+
+    .submission strong {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    #pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 1.5rem;
+      gap: 1rem;
+    }
+
+    #pagination button {
+      padding: 0.5rem 1rem;
+      background-color: var(--secondary);
+      border: 1px solid #ccc;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    #pagination button:hover {
+      background-color: #e5e7eb;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      #search-bar {
+        flex-direction: column;
+      }
+
+      .logout-button {
+        float: none;
+        display: block;
+        margin: 0 auto 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Contact Form Submissions</h1>
-    <button class="logout-button" onclick="logout()">Logout</button>
+  <h1>Contact Form Submissions</h1>
+  <button class="logout-button" onclick="logout()">Logout</button>
 
-    <!-- Search Bar -->
-    <div id="search-bar">
-        <input type="text" id="search-query" placeholder="Search...">
-        <select id="search-field">
-            <option value="name">Name</option>
-            <option value="email">Email</option>
-            <option value="message">Message</option>
-        </select>
-        <button id="search-button">Search</button>
+  <!-- Search Bar -->
+  <div id="search-bar">
+    <input type="text" id="search-query" placeholder="Search..." />
+    <select id="search-field">
+      <option value="name">Name</option>
+      <option value="email">Email</option>
+      <option value="message">Message</option>
+    </select>
+    <button id="search-button">Search</button>
+  </div>
+
+  <!-- Submissions Display -->
+  <div id="submissions">
+    <!-- Dynamically filled by JS -->
+    <!-- Example:
+    <div class="submission">
+      <strong>Name:</strong> John Doe
+      <strong>Email:</strong> john@example.com
+      <p>Message: Hello!</p>
     </div>
+    -->
+  </div>
 
-    <!-- Submissions Display -->
-    <div id="submissions"></div>
+  <!-- Pagination Controls -->
+  <div id="pagination">
+    <button id="prev-page">Previous</button>
+    <span id="page-info">Page 1</span>
+    <button id="next-page">Next</button>
+  </div>
 
-    <!-- Pagination Controls -->
-    <div id="pagination">
-        <button id="prev-page">Previous</button>
-        <span id="page-info"></span>
-        <button id="next-page">Next</button>
-    </div>
-
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

@@ -41,9 +41,6 @@ USERS = {
 def load_user(user_id):
     return User(user_id)
 
-
-
-
 @app.route("/test_db")
 def test_db():
     try:
@@ -51,9 +48,6 @@ def test_db():
         return "✅ MongoDB Connection Successful!"
     except Exception as e:
         return f"❌ MongoDB Connection Failed: {e}"
-    
-
-
 
 @app.route("/api/contact", methods=["POST"])
 def contact():
@@ -68,10 +62,6 @@ def contact():
         return jsonify({"message": "Contact form submitted successfully!"}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-
-
-
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -140,6 +130,7 @@ def search_submissions():
         return jsonify(submissions), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
 
 if __name__ == "__main__":
     app.run(debug=True)

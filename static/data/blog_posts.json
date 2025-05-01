@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Getting Started with Flask",
+    "slug": "getting-started-with-flask",
+    "date": "2024-01-15",
+    "excerpt": "Learn how to create your first Flask application",
+    "image": "/static/images/blog/flask.jpg"
+  },
+  {
+    "title": "Python Tips and Tricks",
+    "slug": "python-tips-and-tricks",
+    "date": "2024-02-20",
+    "excerpt": "Useful Python tips to improve your coding",
+    "image": "/static/images/blog/python.jpg"
+  }
+]
